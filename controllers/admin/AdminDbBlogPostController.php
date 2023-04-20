@@ -334,6 +334,15 @@ class AdminDbBlogPostController extends ModuleAdminController
                             'label' => $this->trans('No', array(), 'Admin.Global')
                         )
                     ),
+                    'id' => 'active_field'
+                ),
+                array(
+                    'type' => 'date',
+                    'label' => $this->l('Fecha de publicación deseada'),
+                    'name' => 'date_active',
+                    'required' => false,
+                    'lang' => false,
+                    'id' => 'date_active_field',
                 ),
                 
             ),
