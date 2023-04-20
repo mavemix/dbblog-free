@@ -63,6 +63,7 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'dbblog_post` (
             `index` tinyint(1) unsigned NOT NULL DEFAULT \'1\',
             `views` int(11) unsigned NOT NULL DEFAULT \'0\',
             `active` tinyint(1) unsigned NOT NULL DEFAULT \'0\',
+            `date_active` datetime,
             `date_add` datetime NOT NULL,
             `date_upd` datetime NOT NULL,
             PRIMARY KEY (`id_dbblog_post`)
