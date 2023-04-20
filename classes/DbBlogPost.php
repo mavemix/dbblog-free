@@ -54,6 +54,8 @@ class DbBlogPost extends ObjectModel
 
     public function __construct($id_dbblog_post = null, $id_lang = null, $id_shop = null)
     {
+        // Llamamos al método que publica posts programados
+        $this->activaPostsProgramados();
         parent::__construct($id_dbblog_post, $id_lang, $id_shop);
     }
 
@@ -441,5 +443,13 @@ class DbBlogPost extends ObjectModel
                 'message' => 'Actualizado correctamente',
             )
         ));
+    }
+
+    /**
+     * Search for posts marked to be published with the expired date
+     */
+    protected function activaPostsProgramados() {
+        $update = "UPDATE "._DB_PREFIX_."dbblog_post SET active = 1, date_active = NULL WHERE active = 0 AND date_active < now()";
+        Db::getInstance(_PS_USE_SQL_SLAVE_)->execute($update);
     }
 }
