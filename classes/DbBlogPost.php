@@ -11,6 +11,7 @@ class DbBlogPost extends ObjectModel
     public $featured = 0;
     public $views = 0;
     public $active = 1;
+    public $date_active;
     public $index = 1;
     
     public $title;
@@ -36,6 +37,7 @@ class DbBlogPost extends ObjectModel
             'featured' =>		        array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
             'views' =>		            array('type' => self::TYPE_INT, 'validate' => 'isunsignedInt'),
             'index' =>			        array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
+            'date_active' =>            array('type' => self::TYPE_DATE, 'validate' => 'isDate'),
             'date_add' =>		        array('type' => self::TYPE_DATE),
             'date_upd' =>		        array('type' => self::TYPE_DATE),
             
