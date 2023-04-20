@@ -317,6 +317,10 @@ class Dbblog extends Module
             $this->context->controller->addJS($this->_path . '/views/js/back.js');
             $this->context->controller->addCSS($this->_path . '/views/css/back.css');
         }
+        if (Tools::getValue('controller') == 'AdminDbBlogPost') {
+            $this->context->controller->addJquery();
+            $this->context->controller->addJS($this->_path . '/views/js/dbblogform.js');
+        }
         Media::addJsDef(array(
             'PS_ALLOW_ACCENTED_CHARS_URL' => (int)Configuration::get('PS_ALLOW_ACCENTED_CHARS_URL'),
             'ps_force_friendly_product' => (int)Configuration::get('PS_FORCE_FRIENDLY_PRODUCT'),
@@ -462,17 +466,22 @@ class Dbblog extends Module
             $more_views = $data['more_views'];
             $limit_last_home = $data['limit_last_home'];
             $last_posts = $data['last_posts'];
+        } else {
+            $limit_views_home = 2;
+            $more_views = 0;
+            $limit_last_home = 2;
+            $last_posts = 1;
+        }
 
-            if($limit_views_home > 0 || $limit_last_home > 0) {
-                Context::getContext()->smarty->assign(array(
-                    'more_views' => $more_views,
-                    'last_posts' => $last_posts,
-                    'limit_views' => $limit_views_home,
-                    'limit_last' => $limit_last_home,
-                    'path_img_posts' => _MODULE_DIR_.'dbblog/views/img/post/',
-                ));
-                return $this->fetch('module:dbblog/views/templates/hook/homeps.tpl');
-            }
+        if($limit_views_home > 0 || $limit_last_home > 0) {
+            Context::getContext()->smarty->assign(array(
+                'more_views' => $more_views,
+                'last_posts' => $last_posts,
+                'limit_views' => $limit_views_home,
+                'limit_last' => $limit_last_home,
+                'path_img_posts' => _MODULE_DIR_.'dbblog/views/img/post/',
+            ));
+            return $this->fetch('module:dbblog/views/templates/hook/homeps.tpl');
         }
     }
 
