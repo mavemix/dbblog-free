@@ -152,7 +152,7 @@ class Dbblog extends Module
 
     public function uninstall()
     {
-//        include(dirname(__FILE__).'/sql/uninstall.php');
+        include(dirname(__FILE__).'/sql/uninstall.php');
         $this->deleteTabs();
         Configuration::deleteByName('DBBLOG_SLUG');
         Configuration::deleteByName('DBBLOG_AUTHOR_SLUG');
